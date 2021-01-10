@@ -363,6 +363,7 @@ protected:
   ros::ServiceServer set_gamma_srv_;
   ros::ServiceServer set_brightness_srv_;
   ros::ServiceServer set_sleeping_srv_;
+  ros::ServiceServer get_camera_properties_srv_;
   std::vector<ros::ServiceServer> set_user_output_srvs_;
 
   ArenaCamera* arena_camera_;
