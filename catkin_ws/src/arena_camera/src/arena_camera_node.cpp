@@ -1942,43 +1942,39 @@ bool ArenaCameraNode::getPropertiesCallback(camera_control_msgs::GetCamPropertie
 {
   auto pNodeMap = pDevice_->GetNodeMap();
 
-  res.is_sleeping
-
-  res.device_user_id
-
   GenApi::CIntegerPtr pBinningHorizontal = pDevice_->GetNodeMap()->GetNode("BinningHorizontal");
-  res.min_binning_x = pBinningHorizontal->GetMin()
-  res.max_binning_x = pBinningHorizontal->GetMax()
-  res.current_binning_x = currentBinningX()
+  res.min_binning_x = pBinningHorizontal->GetMin();
+  res.max_binning_x = pBinningHorizontal->GetMax();
+  res.current_binning_x = currentBinningX();
 
   GenApi::CIntegerPtr pBinningVertical = pDevice_->GetNodeMap()->GetNode("BinningVertical");
-  res.min_binning_y = pBinningVertical->GetMin()
-  res.max_binning_y = pBinningVertical->GetMax()
-  res.current_binning_y = currentBinningY()
+  res.min_binning_y = pBinningVertical->GetMin();
+  res.max_binning_y = pBinningVertical->GetMax();
+  res.current_binning_y = currentBinningY();
 
   res.max_framerate = GenApi::CFloatPtr(pNodeMap->GetNode("AcquisitionFrameRate"))->GetMax();
   res.current_framerate = Arena::GetNodeValue<double>(pNodeMap , "AcquisitionFrameRate");
 
   GenApi::CFloatPtr pExposureTime = pDevice_->GetNodeMap()->GetNode("ExposureTime");
-  res.min_exposure = pExposureTime->GetMin()
-  res.max_exposure = pExposureTime->GetMax()
-  res.current_exposure = currentExposure()
+  res.min_exposure = pExposureTime->GetMin();
+  res.max_exposure = pExposureTime->GetMax();
+  res.current_exposure = currentExposure();
 
   GenApi::CFloatPtr pGain = pDevice_->GetNodeMap()->GetNode("Gain");
   res.min_gain = pGain->GetMin();
   res.max_gain = pGain->GetMax();
-  res.current_gain = currentGain()
+  res.current_gain = currentGain();
 
   GenApi::CFloatPtr pGamma = pDevice_->GetNodeMap()->GetNode("Gamma");
   res.min_gamma = pGamma->GetMin();
   res.max_gamma = pGamma->GetMax();
-  res.current_gamma = currentGamma()
+  res.current_gamma = currentGamma();
 
-  res.gain_auto = pDevice_->GetNodeMap()->GetNode("GainAuto")->GetValue();
-  res.exposure_auto = pNodeMap_->GetNode("ExposureAuto")->GetValue();
+  res.gain_auto = Arena::GetNodeValue<bool>(pNodeMap , "GainAuto");
+  res.exposure_auto = Arena::GetNodeValue<bool>(pNodeMap , "ExposureAuto");
 
-  res.success = true
-  return true
+  res.success = true;
+  return true;
 }
 
 bool ArenaCameraNode::isSleeping()

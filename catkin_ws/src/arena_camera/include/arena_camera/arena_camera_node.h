@@ -53,7 +53,8 @@
 #include <camera_control_msgs/SetROI.h>
 #include <camera_control_msgs/SetSleeping.h>
 #include <camera_control_msgs/GrabImagesAction.h>
- 
+#include <camera_control_msgs/GetCamProperties.h>
+
 #include <actionlib/server/simple_action_server.h>
 #include <camera_info_manager/camera_info_manager.h>
 #include <image_geometry/pinhole_camera_model.h>
@@ -283,6 +284,15 @@ protected:
   bool setSleepingCallback(camera_control_msgs::SetSleeping::Request& req,
                            camera_control_msgs::SetSleeping::Response& res);
 
+  /**
+  * Callback that returns the properties of the camera
+  * @param req request
+  * @param res response
+  * @return true on success
+  */
+  bool getPropertiesCallback(camera_control_msgs::GetCamProperties::Request& req,
+                             camera_control_msgs::GetCamProperties::Response& res);
+  
   /**
   * Returns true if the camera was put into sleep mode
   * @return true if in sleep mode
